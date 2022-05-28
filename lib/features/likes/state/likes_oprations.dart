@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../data/models/like.dart';
 import '../data/repositories/likes_repo.dart';
 
@@ -24,7 +22,7 @@ class LikesOprations {
         Like(uid: uid, likedObjId: objId, likedObjCollectionRef: objRef);
     final result = await repository.addLike(like: like);
 
-    result.fold(
+    return result.fold(
       (failure) {
         //TODO show error
         return false;
@@ -44,7 +42,7 @@ class LikesOprations {
 
     final result = await repository.isLiked(uid: uid, toCheckId: objId);
 
-    result.fold(
+    return result.fold(
       (failure) {
         //TODO show error
         return false;
@@ -65,7 +63,7 @@ class LikesOprations {
 
     final result = await repository.deleteLike(uid: uid, toUnlikeId: objId);
 
-    result.fold(
+    return result.fold(
       (failure) {
         //show error
         return false;
